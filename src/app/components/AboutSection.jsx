@@ -8,7 +8,7 @@ const TAB_DATA = [
         title: 'Skills',
         id: 'skills',
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li>PHP, Laravel, Livewire</li>
                 <li>HTML, CSS</li>
                 <li>JavaScript, React.js, Next.js</li>
@@ -22,7 +22,7 @@ const TAB_DATA = [
         title: 'Experience',
         id: 'experience',
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li>Web development teacher @Aulab Hackademy</li>
             </ul>
         )
@@ -31,7 +31,7 @@ const TAB_DATA = [
         title: 'Certifications',
         id: 'certification',
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li> <a href="https://www.credential.net/6fa5e88b-4bf6-4582-a0b1-7bc9b591ac5e">Full Stack Web Developer</a> </li>
             </ul>
         )
