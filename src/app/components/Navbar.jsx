@@ -28,11 +28,11 @@ const Navbar = () => {
                 <div className="mobile-menu block md:hidden">
                     {
                         !navOpen ? (
-                            <button onClick={()=> setNavOpen(true)} className="text-slate-400 flex items-center px-3 py-2 border rounded border-slate-400 hover:text-white hover:border-white">
+                            <button onClick={() => setNavOpen(true)} className="text-slate-400 flex items-center px-3 py-2 border rounded border-slate-400 hover:text-white hover:border-white">
                                 <Bars3Icon className="h-5 w-5" />
                             </button>
                         ) : (
-                            <button onClick={()=> setNavOpen(false)} className="text-slate-400 flex items-center px-3 py-2 border rounded border-slate-400 hover:text-white hover:border-white">
+                            <button onClick={() => setNavOpen(false)} className="text-slate-400 flex items-center px-3 py-2 border rounded border-slate-400 hover:text-white hover:border-white">
                                 <XMarkIcon className="h-5 w-5" />
                             </button>
                         )
