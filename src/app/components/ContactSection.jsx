@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import { React, useState } from 'react'
 import Github from "../../../public/github-icon.svg";
 import Linkedin from "../../../public/linkedin-icon.svg";
 import Link from 'next/link';
@@ -7,9 +7,7 @@ import Image from 'next/image';
 
 
 function ContactSection() {
-    // function send() {
-    //     sendEmail();
-    // }
+    const [emailSubmitted, setEmailSubmitted] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
@@ -33,6 +31,7 @@ function ContactSection() {
 
         if (response.status == 200) {
             console.log('Message sent');
+            setEmailSubmitted(true);
         }
     }
     return (
@@ -43,10 +42,10 @@ function ContactSection() {
                 <h5 className='text-xl font-bold text-white my-2'>Let's connect</h5>
                 <p className='text-[#ADB7BE] mb-4 max-w-md'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt aliquam necessitatibus quae praesentium cumque asperiores ad aspernatur inventore totam numquam voluptas deleniti a, quos ex vel possimus eaque sed maiores.</p>
                 <div className='socials flex flex-row gap-2'>
-                    <Link href="https://github.com/AnnalisaCaldarulo97">
+                    <Link target='_blank' href="https://github.com/AnnalisaCaldarulo97">
                         <Image src={Github} alt='github icon'></Image>
                     </Link>
-                    <Link href="https://www.linkedin.com/in/annalisa-caldarulo-987185263/">
+                    <Link target='_blank' href="https://www.linkedin.com/in/annalisa-caldarulo-987185263/">
                         <Image src={Linkedin} alt='linkedin icon'></Image>
                     </Link>
                 </div>
@@ -82,6 +81,11 @@ function ContactSection() {
                     </label>
                     <textarea name='message' placeholder='Your message goes here' id="message" className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'></textarea>
                     <button type="submit" className='bg-purple-500 hover:bg-purple-600 font-medium py-2.5 px-5 rounded-lg w-full'>Send message</button>
+                    {
+                        emailSubmitted &&(
+                            <p className='text-green-500 text-lg mt-2'>Email sent! Thank you</p>
+                        )
+                    }
                 </form>
             </div>
         </section>
