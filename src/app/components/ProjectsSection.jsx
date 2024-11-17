@@ -26,7 +26,7 @@ const ProjectsSection = () => {
     return (
         <div id='projects'>
             <h2>My Projects</h2>
-            <div className='md:grid md:grid-cols-2 gap-8'>
+            <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
                 {projectsData.map((proj) => (
                     <div key={proj.id} className='cols-12'>
                         <ProjectCard previewUrl={proj.preview} gitUrl={proj.git}  title={proj.title} description={proj.description} imgUrl={proj.image} />
