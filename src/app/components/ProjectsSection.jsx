@@ -2,8 +2,8 @@
 import React from 'react';
 import ProjectCard from './ProjectCard'
 import ProjectTag from './ProjectTag';
-import { useState } from 'react';
-
+import { useState, useRef } from 'react';
+import { motion, useInView } from "framer-motion";
 const projectsData = [
     {
         id: 1,
@@ -48,6 +48,19 @@ const ProjectsSection = () => {
     const handleTagCHange = (newTag) => (
         setTag(newTag)
     );
+    // animazioni
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    const handleTagChange = (newTag) => {
+        setTag(newTag);
+    };
+
+    const cardVariants = {
+        initial: { y: 50, opacity: 0 },
+        animate: { y: 0, opacity: 1 },
+    };
+
 
     // funzione di filtraggio tra i projects
     const filteredProjects = projectsData.filter((proj) => {
@@ -55,7 +68,7 @@ const ProjectsSection = () => {
     });
 
     return (
-        <div id='projects'>
+        <div id='projects' className='pt-24'>
             <h2>My Projects</h2>
             {/* filter buttons */}
             <div className='text-white flex flex-row justify-center items-center gap-2 py-6'>
@@ -69,7 +82,7 @@ const ProjectsSection = () => {
                     name='Frontend'
                     isSelected={tag == 'Frontend'}
                 />
-                 <ProjectTag
+                <ProjectTag
                     onClick={handleTagCHange}
                     name='Backend'
                     isSelected={tag == 'Backend'}
@@ -77,11 +90,25 @@ const ProjectsSection = () => {
             </div>
 
             {/* cards */}
-            <div className='grid md:grid-cols-2 gap-8 md:gap-12 '>
-                {filteredProjects.map((proj) => (
-                    <div key={proj.id} className='cols-12'>
-                        <ProjectCard previewUrl={proj.preview} gitUrl={proj.git} title={proj.title} description={proj.description} imgUrl={proj.image} />
-                    </div>
+
+            <div ref={ref} className="grid md:grid-cols-2 gap-8 md:gap-12">
+                {filteredProjects.map((project, index) => (
+                    <motion.div
+                        key={index}
+                        variants={cardVariants}
+                        initial="initial"
+                        animate={isInView ? "animate" : "initial"}
+                        transition={{ duration: 0.3, delay: index * 0.4 }}
+                    >
+                        <ProjectCard
+                            key={project.id}
+                            title={project.title}
+                            description={project.description}
+                            imgUrl={project.image}
+                            gitUrl={project.git}
+                            previewUrl={project.preview}
+                        />
+                    </motion.div>
                 ))}
             </div>
         </div>
