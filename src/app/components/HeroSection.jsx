@@ -32,7 +32,7 @@ const HeroSection = () => {
                 <div>
 
                     <Link href={'/cv.pdf'} target="_blank" rel="noopener noreferrer"
-                        download className="px-6 py-3 sm:w-fit  w-full rounded-full mr-4 bg-gradient-to-br from-tertiary-900 via-primary-700 to-secondary-300 bg-white hover:bg-slate-200 text-white">Hire Me</Link>
+                        download className="px-6 py-3 sm:w-fit  w-full rounded-full mr-4 bg-gradient-to-br from-tertiary-900 via-primary-700 to-secondary-300 bg-white hover:bg-slate-200 text-white">Download CV</Link>
 
                     {/* <button className="px-1 py-1  w-full sm:w-fit rounded-full bg-gradient-to-br from-tertiary-500 via-primary-500 to-secondary-400 hover:bg-slate-800 text-white  mt-3">
                         <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
