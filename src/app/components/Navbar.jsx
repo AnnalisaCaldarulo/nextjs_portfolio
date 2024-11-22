@@ -23,8 +23,8 @@ const Navbar = () => {
     const [navOpen, setNavOpen] = useState(false);
     return (
         <nav className="fixed top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-95 border border-[#33353F]">
-            <div className="lg:py-4  flex flex-wrap items-center justify-between mx-auto p-8 text-white">
-                <Link href={"/"} className="text-2xl md:text-4xl font-semibold">portfolio</Link>
+            <div className="lg:py-4  flex flex-wrap items-center justify-between mx-auto p-8">
+                <Link href={"/"} className="text-2xl md:text-4xl font-semibold text-white">portfolio</Link>
                 <div className="mobile-menu block md:hidden">
                     {
                         !navOpen ? (
