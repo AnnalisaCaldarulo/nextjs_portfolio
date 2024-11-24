@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { useMode } from "./Context/ModeContext";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -18,6 +19,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en" className="scroll-smooth">
       <body
