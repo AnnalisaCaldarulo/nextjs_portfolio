@@ -7,23 +7,64 @@ import Image from 'next/image';
 
 
 function ContactSection() {
+
     const [emailSubmitted, setEmailSubmitted] = useState(false);
     const [showMaintenanceMessage, setShowMaintenanceMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const data = {
             email: e.target.email.value,
             subject: e.target.subject.value,
             message: e.target.message.value,
 
         }
-        setShowMaintenanceMessage(true);
-        setTimeout(() => {
-            setShowMaintenanceMessage(false);
-        }, 5000);
+        // ! test logica invio mail con api da laravel
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/mail-submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'), // If using CSRF protection (important!)
+                },
+                body: JSON.stringify(data),
+            });
+            console.log(response);
+            const result = await response.json();
+            console.log(result);
+
+            if (response.ok) {
+                setEmailSubmitted(true);
+                e.target.reset(); // Clear the form
+
+            } else {
+                console.error('Errore durante l\'invio dell\'email:', result.error);
+            }
+        } catch (error) {
+            console.error('Errore di rete:', error);
+        }
+
+
+        // setShowMaintenanceMessage(true);
+        // setTimeout(() => {
+        //     setShowMaintenanceMessage(false);
+        // }, 5000);
         // alert("Il servizio di invio email è al momento in manutenzione. Ci scusiamo per l'inconveniente.");
 
-        return;
+
+
+
+
+
+
+
+
+
+
+
 
         // ! logica di invio mail da rivedere
         // const JSONdata = JSON.stringify(data);
@@ -103,6 +144,11 @@ function ContactSection() {
                             <p className='text-green-500 text-lg mt-2'>Email sent! Thank you</p>
                         )
                     }
+                    {errorMessage && (
+                        <div className="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+                            <p>{errorMessage}</p>
+                        </div>
+                    )}
                 </form>
             </div>
         </section>
